@@ -37,6 +37,7 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Обработка изображения, извлечение FEN
     # Тут должен быть твой код распознавания (например через chess-image-recognizer API)
     fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"  # заглушка
+    await update.message.reply_text(f"FEN: {fen}")
     result = analyze_fen(fen)
     await update.message.reply_text(result)
 
