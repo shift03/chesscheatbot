@@ -5,8 +5,8 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, ContextTypes, filters
 import requests
 
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-LICHESS_TOKEN = os.getenv("LICHESS_TOKEN")
+TELEGRAM_TOKEN = os.getenv("7666198859:AAFnbBswhXaNpfzj4QDP0JJUDHv2vyghqAg")
+LICHESS_TOKEN = os.getenv("lip_WNVfJHmjPVfOaxjE1bEl")
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
