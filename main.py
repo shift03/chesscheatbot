@@ -1,9 +1,11 @@
 import logging
 import os
 import tempfile
+import nest_asyncio
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, ContextTypes, filters
 import requests
+import asyncio
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 LICHESS_TOKEN = os.getenv("LICHESS_TOKEN")
@@ -35,7 +37,7 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await file.download_to_drive(custom_path=tf.name)
         image_path = tf.name
 
-    # Заглушка: временный FEN
+    # Временная заглушка — FEN статичный
     fen = "r1bqkbnr/pppppppp/n7/8/8/N7/PPPPPPPP/R1BQKBNR w KQkq - 0 1"
     result = analyze_fen(fen)
     await update.message.reply_text(result)
@@ -48,5 +50,5 @@ async def main():
     await app.run_polling()
 
 if __name__ == '__main__':
-    import asyncio
-    asyncio.run(main())
+    nest_asyncio.apply()
+    asyncio.get_event_loop().run_until_complete(main())
