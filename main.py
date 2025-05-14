@@ -18,7 +18,7 @@ def analyze_fen(fen: str):
         "Authorization": f"Bearer {LICHESS_TOKEN}",
         "Content-Type": "application/x-www-form-urlencoded"
     }
-    response = requests.post("https://lichess.org/api/cloud-eval", data={"fen": fen, "multiPv": 1}, headers=headers)
+    response = requests.get(f"https://lichess.org/api/cloud-eval?fen={fen}&multiPv=1", headers=headers)
     if response.status_code == 200:
         data = response.json()
         best = data.get("pvs", [{}])[0].get("moves", "?")
