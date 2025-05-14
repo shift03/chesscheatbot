@@ -41,11 +41,17 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     fen = "r1bqkbnr/pppppppp/n7/8/8/N7/PPPPPPPP/R1BQKBNR w KQkq - 0 1"
     result = analyze_fen(fen)
     await update.message.reply_text(result)
+    
+async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    fen = update.message.text.strip()
+    result = analyze_fen(fen)
+    await update.message.reply_text(result)
 
 async def main():
     app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
     logger.info("Бот запущен")
     await app.run_polling()
 
