@@ -5,7 +5,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, fil
 from stockfish import Stockfish
 
 # Делаем движок исполняемым
-os.chmod('./stockfish', 0o755)
+os.chmod('./app/stockfish', 0o755)
 
 # Настройка движка Stockfish
 stockfish = Stockfish(path="./stockfish", depth=15, parameters={"Threads": 2, "Minimum Thinking Time": 30})
